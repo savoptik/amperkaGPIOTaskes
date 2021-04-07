@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
 
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(8, GPIO.IN)
+GPIO.setup(2, GPIO.IN)
 
 leds = [13, 19, 16]
 
@@ -14,7 +14,7 @@ GPIO.setup(10, GPIO.OUT)
 GPIO.output(10, GPIO.HIGH)
 
 try:
-    while True:
+    while GPIO.input(2):
         button = not GPIO.input(8)
         for i in leds:
             GPIO.output(i, button)
